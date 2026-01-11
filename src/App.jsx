@@ -1,16 +1,13 @@
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import PeriodicTable from './components/PeriodicTable'
 import ElementModal from './components/ElementModal'
 import ParticlesBackground from './components/ParticlesBackground'
 import AnimatedTitle from './components/AnimatedTitle'
-import { mapElements } from './utils/elementMapper'
+import { elements } from './data/elementsData'
 import './App.css'
 
 function App() {
   const [selectedElement, setSelectedElement] = useState(null)
-  
-  // Load elements from npm package
-  const elements = useMemo(() => mapElements(), [])
 
   return (
     <div className="app">
@@ -19,7 +16,6 @@ function App() {
       <header className="header">
         <AnimatedTitle />
         <p className="subtitle">Click on any element to explore its properties</p>
-        <p className="data-source">Data powered by periodic-table npm package 📦</p>
       </header>
       
       <PeriodicTable elements={elements} onElementClick={setSelectedElement} />
@@ -32,7 +28,7 @@ function App() {
       )}
       
       <footer className="footer">
-        <p>Built with React ⚛️ | Data from periodic-table package 🧪 | Deployed on Vercel ▲</p>
+        <p>Built with React ⚛️ | Animated with ReactBits Style ✨ | Deployed on Vercel ▲</p>
       </footer>
     </div>
   )
