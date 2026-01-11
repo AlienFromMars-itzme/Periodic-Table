@@ -1,0 +1,164 @@
+.element {
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: elementFadeIn 0.5s ease-out both;
+  animation-delay: calc(var(--element-index, 0) * 0.01s);
+}
+
+.element-spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:  0;
+  opacity: 0;
+  transition:  opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.element:hover .element-spotlight {
+  opacity: 1;
+}
+
+.element-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition:  opacity 0.3s ease;
+}
+
+.element:hover .element-border {
+  opacity: 1;
+  animation: borderRotate 2s linear infinite;
+}
+
+. element-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.element:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3),
+              0 0 20px rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+.atomic-number {
+  font-size: 0.7rem;
+  font-weight:  600;
+  opacity: 0.9;
+}
+
+.symbol {
+  font-size: 1.5rem;
+  font-weight:  700;
+  text-align: center;
+  margin:  0.2rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.name {
+  font-size: 0.6rem;
+  text-align: center;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.mass {
+  font-size: 0.55rem;
+  text-align:  center;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+@keyframes elementFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes borderRotate {
+  0% {
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  }
+  50% {
+    background: linear-gradient(225deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  }
+  100% {
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  }
+}
+
+@media (max-width:  1200px) {
+  .element {
+    padding: 0.3rem;
+    border-radius: 8px;
+  }
+  
+  .atomic-number {
+    font-size: 0.5rem;
+  }
+  
+  .symbol {
+    font-size: 1rem;
+  }
+  
+  .name {
+    font-size: 0.45rem;
+  }
+  
+  .mass {
+    font-size: 0.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .element {
+    padding: 0.2rem;
+    border-radius: 6px;
+  }
+  
+  .atomic-number {
+    font-size: 0.4rem;
+  }
+  
+  .symbol {
+    font-size: 0.8rem;
+  }
+  
+  .name {
+    display: none;
+  }
+  
+  .mass {
+    font-size: 0.35rem;
+  }
+}
